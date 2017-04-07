@@ -7,7 +7,7 @@ import akka.http.scaladsl.server.Directives._
 
 object Boot {
   import system.dispatcher
-  implicit val system = ActorSystem("akka-example")
+  implicit val system = ActorSystem("perimeterx-challenge")
   implicit val materializer = ActorMaterializer()
 
   def main(args: Array[String]): Unit = {
