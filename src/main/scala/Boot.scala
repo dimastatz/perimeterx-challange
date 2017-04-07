@@ -32,8 +32,8 @@ object Boot {
 
   def routeField(): Route = {
     pathPrefix("field") {
-      path(Segment / Segment) {
-        (parameter1, parameter2) => {
+      parameters('type, 'value) {
+        (t, v) => {
           get {
             complete("field")
           }
