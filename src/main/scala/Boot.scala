@@ -7,6 +7,7 @@ import akka.http.scaladsl.server.Directives._
 
 object Boot {
   import system.dispatcher
+  val searchService = new SearchService()
   implicit val system = ActorSystem("perimeterx-challenge")
   implicit val materializer = ActorMaterializer()
 
@@ -14,9 +15,6 @@ object Boot {
     println("starting web server")
     val routes = routeDefault() ~ routeField() ~ routeSearch()
     val binding = Http().bindAndHandle(routes, "0.0.0.0", 8080)
-
-    //logger.debug(s"akka streams http server on 8080")
-    StdIn.readLine()
 
     sys addShutdownHook {
       //logger.debug(s"akka streams http server is shutting down")
@@ -35,7 +33,7 @@ object Boot {
       parameters('type, 'value) {
         (t, v) => {
           get {
-            complete("field")
+            complete(searchService.search(t,v))
           }
         }
       }

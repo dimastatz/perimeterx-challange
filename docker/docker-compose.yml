@@ -14,7 +14,7 @@ services:
       - ./seed:/seed
 
   es-api:
-    image: docker-test
+    image: perimeterx-challange
     links:
       - es
     ports:
