@@ -1,30 +1,28 @@
-How to run it
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Guidelines</title>
+</head>
 
-Instructions:
+<body>
+<h2>Guidelines:</h2>
 
-The following exercise contains two user stories for you to implement (and a third one that you shouldn't worry about for now). Each user story relies on the previous one. Your goal is to have a working program in the language of your choice that implements these use cases.
+<p>Perform following steps in order to run this code</p>
+<ul>
+<li>Clone github repository to your machine.</li>
+<li>Open project in IntelliJ</li>
+<li>Start View->Tool Window->Terminal</li>
+<li>Run sbt assembly and ensure that jar is created</li>
+<li>Copy perimeterx-challange-assembly-1.0.jar to commander folder</li>
+<li>Open docker terminal and navigate to commander folder</li>
+<li>Run <i>docker build -t perimeter-challange .</i> command</li>
+<li>Run <i>docker build -t perimeter-challange .</i> command</li>
+<li>Navigate to folder that conatins docker-compose.yml</li>
+<li>Run <i>docker compose up</i> command</li>
+<li>Open browser and navigate to {docker machine url}/fields? ...</li>
 
-You can assume the input is valid. You don't need to handle unexpected characters or invalid spacing in the input file.
 
-Guidelines:
-
-We value clean code and good object oriented design.
-
-By clean code we mean:
-
-Concise and descriptive variable and method names.
-Good use of the programming language.
-Easy to read.
-a README (run/compile instructions)
-By good design we mean:
-
-Object oriented design principles. ( e.g. SOLID)
-Good separation of concerns.
-A simple, practical solution.
-Mostly we are interested in code that makes you proud.
-
-If you could add some tests as well, that would really be icing on the cake.
-
-1. Download the project from Github
-2. Open View->Tools Windows->Terminal and run sbt assembly
-3. Open docker terminal
+</ul>
+</body>
+</html>
