@@ -16,6 +16,10 @@ services:
   es-seed:
     image: elasticsearch:5
     command: /seed/es-seed-data.sh
+    networks:
+      - esn
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     volumes:
       - ./seed:/seed
 

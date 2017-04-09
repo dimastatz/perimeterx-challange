@@ -2,7 +2,11 @@ name := "perimeterx-challange"
 version := "1.0"
 scalaVersion := "2.11.8"
 
-libraryDependencies += "org.elasticsearch" % "elasticsearch" % "0.20.5"
+libraryDependencies += "org.elasticsearch" % "elasticsearch" % "5.3.0"
+libraryDependencies += "org.elasticsearch.client" % "transport" % "5.3.0"
+libraryDependencies += "org.apache.logging.log4j" % "log4j-api" % "2.8.2"
+libraryDependencies += "org.apache.logging.log4j" % "log4j-core" % "2.8.2"
+
 libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.4.10"
 libraryDependencies += "com.typesafe.akka" %% "akka-http-core" % "2.4.10"
 libraryDependencies += "com.typesafe.akka" %% "akka-http-testkit" % "2.4.10"
