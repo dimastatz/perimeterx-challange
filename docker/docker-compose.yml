@@ -1,9 +1,15 @@
+version: '2'
+
 services:
   es:
     image: elasticsearch:5
     ports:
       - "9200:9200"
       - "9300:9300"
+    networks:
+      - esn
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     volumes:
       - ./data:/usr/share/elasticsearch/data
 
@@ -19,8 +25,15 @@ services:
       - es
     ports:
       - "8080:8080"
+    networks:
+      - esn
     depends_on:
       - es
+  
+networks:
+  esn:
+    driver: bridge
+  
   #kibana:
     #image: kibana:5
     #links:
@@ -29,3 +42,4 @@ services:
       #- "5601:5601"
     #depends_on:
       #- es
+  
