@@ -42,10 +42,10 @@ object Boot {
 
   def routeSearch(): Route = {
     pathPrefix("search") {
-      path(Segment / Segment) {
-        (parameter1, parameter2) => {
+      parameters('value) {
+        (v) => {
           get {
-            complete("search")
+            complete(searchService.search(v))
           }
         }
       }
