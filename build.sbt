@@ -2,6 +2,7 @@ name := "perimeterx-challange"
 version := "1.0"
 scalaVersion := "2.11.8"
 
+libraryDependencies += "com.google.code.gson" % "gson" % "1.7.1"
 libraryDependencies += "org.elasticsearch" % "elasticsearch" % "5.3.0"
 libraryDependencies += "org.elasticsearch.client" % "transport" % "5.3.0"
 libraryDependencies += "org.apache.logging.log4j" % "log4j-api" % "2.8.2"
