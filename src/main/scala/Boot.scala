@@ -8,7 +8,7 @@ object Boot {
   import system.dispatcher
   // TODO: refactor to use config file
   val defaultFields = List("ip", "domain", "blacklisted", "event_type")
-  val searchService = new SearchService("localhost", 9200, "page-views", defaultFields)
+  val searchService = new SearchService("192.168.99.100", 9200, "page-views", defaultFields)
   implicit val system = ActorSystem("perimeterx-challenge")
   implicit val materializer = ActorMaterializer()
 
