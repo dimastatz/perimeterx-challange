@@ -15,7 +15,6 @@
 <li>Run sbt assembly and ensure that jar is created</li>
 <li>Copy perimeterx-challange-assembly-1.0.jar to commander folder</li>
 <li>Open docker terminal and navigate to commander folder</li>
-<li>Run <i>docker build -t perimeter-challange .</i> command</li>
 <li>Navigate to folder that conatins docker-compose.yml</li>
 <li>Run <i>docker compose up</i> command</li>
 <li>Open browser and navigate to {docker machine url}/fields? ...</li>
