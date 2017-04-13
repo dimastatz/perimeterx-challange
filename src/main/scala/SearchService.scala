@@ -1,8 +1,6 @@
 import java.util
-
-import com.google.gson.{Gson, GsonBuilder, JsonParser}
-
 import scala.util._
+import com.google.gson._
 import org.apache.http.HttpHost
 import org.apache.http.entity.StringEntity
 import org.apache.http.util.EntityUtils

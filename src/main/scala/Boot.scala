@@ -1,3 +1,4 @@
+import scala.util.Try
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server._
@@ -6,15 +7,22 @@ import akka.http.scaladsl.server.Directives._
 
 object Boot {
   import system.dispatcher
-  // TODO: refactor to use config file
-  val defaultFields = List("ip", "domain", "blacklisted", "event_type")
-  val searchService = new SearchService("192.168.99.100", 9200, "page-views", defaultFields)
   implicit val system = ActorSystem("perimeterx-challenge")
   implicit val materializer = ActorMaterializer()
 
   def main(args: Array[String]): Unit = {
-    val routes = routeDefault() ~ routeField() ~ routeSearch()
+    // parse input parameters
+    val host = Try(args(0)).getOrElse("192.168.99.100")
+    val port = Try(args(1).toInt).getOrElse(9200)
+    val index = Try(args(2)).getOrElse("page-views")
+    val fields = Try(args(3).split(",").toList).
+      getOrElse(List("ip", "domain", "blacklisted", "event_type"))
+
+    // run web server
+    val searchService = new SearchService(host, port, index, fields)
+    val routes = routeDefault() ~ routeField(searchService)~ routeSearch(searchService)
     val binding = Http().bindAndHandle(routes, "0.0.0.0", 8080)
+
     println("web server started")
 
     sys addShutdownHook {
@@ -29,7 +37,7 @@ object Boot {
     }
   }
 
-  def routeField(): Route = {
+  def routeField(searchService: SearchService): Route = {
     pathPrefix("field") {
       parameters('type, 'value) {
         (t, v) => {
@@ -41,7 +49,7 @@ object Boot {
     }
   }
 
-  def routeSearch(): Route = {
+  def routeSearch(searchService: SearchService): Route = {
     pathPrefix("search") {
       parameters('value) {
         (v) => {
